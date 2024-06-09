@@ -1,5 +1,5 @@
-import Router from 'express'
-import * as db from '../db/expense'
+import { Router } from 'express'
+import * as db from '../db/expense.ts'
 
 
 const router = Router()
@@ -29,12 +29,12 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-//POST 'api/v1/videos/'
+//POST 'api/v1/expenses/'
 
 router.post('/', async (req, res) => {
-  const newVideo = req.body
+  const newExpense = req.body
   try {
-    await db.addVideo(newVideo)
+    await db.addExpense(newExpense)
     res.sendStatus(200)
   } catch (error) {
     console.error(`Database error ${error}`)
@@ -47,10 +47,12 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
   try {
-    await db.deleteVideo(id)
+    await db.deleteExpense(id)
     res.sendStatus(200)
   } catch (error) {
     console.error(`Database error: ${error}`)
     res.sendStatus(500)
   }
 })
+
+export default router

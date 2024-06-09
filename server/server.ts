@@ -1,22 +1,24 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import { getAllExpenses } from './db/expense.ts'
+// import { getAllExpenses } from './db/expense.ts'
+import { getAllExpenses, listExpensesByMonth }  from './db/expense.ts'
+
 
 import fruitRoutes from './routes/fruits.ts'
-import expenseRoutes from './routes/expenses.ts'
+import expensesRoutes from './routes/expenses.ts'
 
 
 const server = express()
-const expenses = await getAllExpenses()
-
+// const expenses = await getAllExpenses()
+const result = await listExpensesByMonth(5, 2024);
+console.log(result); // This should print the actual result
 
 server.use(express.json())
 
 server.use('/api/v1/fruits', fruitRoutes)
-server.use('/api/v1/expensesList', expenseRoutes)
+server.use('/api/v1/expenses', expensesRoutes)
 
-console.log(expenses)
 
 
 if (process.env.NODE_ENV === 'production') {

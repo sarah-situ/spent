@@ -34,15 +34,26 @@ export async function listExpensesBydate(): Promise<Expense[]> {
         return expenses as Expense[];
       }
 
-export async function getTotalByMonth(): Promise<Expense[]> {
-        const expenses = await db('expenses')
-          .select('categories.name as category', 
-                  db.raw('EXTRACT(MONTH FROM date)'), 
-                  db.raw('SUM(amount) as total'))
-          .join('categories', 'expenses.category_id', '=', 'categories.id')
-          .groupBy('categories.name', db.raw('EXTRACT(MONTH FROM date)'))
-          .orderBy(await db.raw('EXTRACT(YEAR FROM date)'), 'asc')
-          .orderBy(await db.raw('EXTRACT(MONTH FROM date)'), 'asc')
+// export async function getTotalByMonth(): Promise<Expense[]> {
+//         const expenses = await db('expenses')
+//           .select('categories.name as category', 
+//                   db.raw('EXTRACT(MONTH FROM date)'), 
+//                   db.raw('SUM(amount) as total'))
+//           .join('categories', 'expenses.category_id', '=', 'categories.id')
+//           .groupBy('categories.name', db.raw('EXTRACT(MONTH FROM date)'))
+//           .orderBy(await db.raw('EXTRACT(YEAR FROM date)'), 'asc')
+//           .orderBy(await db.raw('EXTRACT(MONTH FROM date)'), 'asc')
       
-        return expenses as Expense[]
-          }
+//         return expenses as Expense[]
+//           }
+
+export async function listExpensesByMonth(month: number, year: number): Promise<Expense[]> {
+  const expenses = await db('expenses')
+    .select('expenses.id as expensesId', 'name', 'amount', 'date', 'categories.name as category')
+    .join('categories', 'expenses.category_id', '=', 'categories.id')
+    .where(db.raw('strftime("%m", date) = ?', month))
+    .where(db.raw('strftime("%Y", date) = ?', year))
+    .orderBy('date', 'asc')
+
+  return expenses as Expense[];
+}
