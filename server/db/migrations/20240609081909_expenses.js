@@ -7,9 +7,8 @@ export async function up(knex) {
       table.increments('id').primary()
       table.date('date').notNullable()
       table.decimal('amount').notNullable()
-      table.integer('category_id').unique().notNullable().references('categories.id')
+      table.integer('category_id').notNullable().references('categories.id')
       table.string('description')
-      table.integer('month_id').notNullable().references('months.id')
     })
   };
   
