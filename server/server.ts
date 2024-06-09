@@ -4,6 +4,7 @@ import * as Path from 'node:path'
 import { getAllExpenses } from './db/expense.ts'
 
 import fruitRoutes from './routes/fruits.ts'
+import expenseRoutes from './routes/expenses.ts'
 
 
 const server = express()
@@ -13,6 +14,7 @@ const expenses = await getAllExpenses()
 server.use(express.json())
 
 server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/v1/expensesList', expenseRoutes)
 
 console.log(expenses)
 
