@@ -7,7 +7,7 @@ const db = connection
 export function getExpenses(): Promise<Expense[]> {
     return db('expenses').select()
 }
-console.log('hello')
+
 // return a single expense by id
 export function getExpenseById(id: number): Promise<Expense>{
     return db('expenses').where({id}).select().first()
@@ -15,12 +15,15 @@ export function getExpenseById(id: number): Promise<Expense>{
 
 // return expenses by particular date
 export function getExpensesByDate(date: Date): Promise<Expense[]> {
-    return db('expenses').select().where({date})
+    const dateString = date.toISOString().split('T')[0];
+    return db('expenses').select('*').where({date: dateString})
 }
-
 // delete expense by id
 export function deleteExpense(id: number) {
     return db('expenses').where({id}).del()
 }
 
-//
+// add new expense
+export function addExpense(newExpense: Expense) {
+    return db('expense').insert(newExpense)
+}
