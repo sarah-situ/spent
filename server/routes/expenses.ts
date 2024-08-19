@@ -66,5 +66,15 @@ router.post('/', async (req, res) => {
 })
 
 //DEL 'api/v1/expenses/:id'
+router.delete('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    await db.deleteExpense(id)
+    res.sendStatus(200)
+  } catch (error) {
+    console.error(`Database error ${error}`)
+    res.sendStatus(500)
+  }
+})
 
 export default router
