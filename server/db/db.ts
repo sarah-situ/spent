@@ -25,5 +25,5 @@ export function deleteExpense(id: number) {
 
 // add new expense
 export function addExpense(newExpense: Expense) {
-    return db('expense').insert(newExpense)
+    return db('expenses').insert(newExpense)
 }
