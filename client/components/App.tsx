@@ -1,3 +1,4 @@
+import ExpenseForm from "./ExpenseForm"
 import ExpenseList from "./ExpenseList"
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         </h1>
         <section>
           <ExpenseList/>
+          <ExpenseForm />
         </section>
       </div>
     </>
