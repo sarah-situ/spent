@@ -24,6 +24,16 @@ export function deleteExpense(id: number) {
 }
 
 // add new expense
-export function addExpense(newExpense: Expense) {
-    return db('expenses').insert(newExpense)
+export function addExpense(addNewExpense: Expense) {
+    const user_id = 1 //Hardcoded user_id
+    
+    //convert date to YYYY-MM-DD string to exclude time
+    const formatDate = new Date(addNewExpense.date).toISOString().split('T')[0];
+
+    const expenseWithUserId = {
+        ...addNewExpense,
+        date: formatDate,
+        user_id: user_id,
+    }
+    return db('expenses').insert(expenseWithUserId)
 }

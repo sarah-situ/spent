@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Expense } from '../../models/expenses'
+import { Expense, ExpenseData } from '../../models/expenses'
 
 const rootURL = 'api/v1/expenses'
 
@@ -13,6 +13,6 @@ export async function fetchExpenseById(id: number): Promise<Expense> {
   return res.body
 }
 
-export async function addExpense(newExpense: Expense){
+export async function addNewExpense(newExpense: ExpenseData){
     await request.post(rootURL).send(newExpense)
 }

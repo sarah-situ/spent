@@ -1,24 +1,49 @@
 import { useState } from 'react'
-
-export default function ExpenseForm({onSubmit}) {
+import { ExpenseData } from '../../models/expenses'
+import { useMutation } from '@tanstack/react-query'
+import { addNewExpense } from '../apis/apiClient'
+ 
+export default function ExpenseForm() {
+  // const [newExpense, setNewExpense] = useState('')
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState('')
   const [date, setDate] = useState('')
 
+  const addMutation = useMutation({
+    mutationFn: (expense: ExpenseData) => addNewExpense(expense),
+  })
 
-  const handleSumbit = (e) => {
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setNewExpense(e.target.value)
+  
+
+  const handleSumbit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit({ category, description, amount, date })
+
+    const expenseData: ExpenseData ={
+      category_id: Number(category),
+      date: new Date(date),
+      description,
+      amount: parseFloat(amount)
+    }
+    // onSubmit({ category, description, amount, date })
+   
+    addMutation.mutate(expenseData)
     setCategory('')
     setDescription('')
     setAmount('')
     setDate('')
   }
 
+  if (addMutation.isSuccess){
+    return <p>Submitted: {description} ${amount}</p>
+  }
+  // console.log(description)
+
   return (
     <>
-    <p>{description}</p>
+      <p>{description}</p>
       <form onSubmit={handleSumbit}>
         <div>
           <label htmlFor="category">Category:</label>
@@ -66,3 +91,4 @@ export default function ExpenseForm({onSubmit}) {
     </>
   )
 }
+

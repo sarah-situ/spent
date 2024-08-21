@@ -1,6 +1,6 @@
 interface Props {
   category_id: number
-  date: string
+  date: Date
   description: string
   amount: number
 }
