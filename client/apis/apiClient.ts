@@ -5,7 +5,7 @@ const rootURL = 'api/v1/expenses'
 
 export async function fetchExpenses(): Promise<Expense[]> {
   const res = await request.get(rootURL)
-  return res.body
+  return res.body // as Expense[]
 }
 
 export async function fetchExpenseById(id: number): Promise<Expense> {
