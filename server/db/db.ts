@@ -4,8 +4,16 @@ import { Expense } from '../../models/expenses'
 const db = connection
 
 // get all expenses
-export function getExpenses(): Promise<Expense[]> {
-    return db('expenses').select()
+export async function getExpenses(): Promise<Expense[]> {
+    try {
+        const expenses = await db('expenses')
+        .join('categories', 'expenses.category_id', '=', 'categories.id')
+        .select('expenses.id',' expenses.user_id', 'expenses.category_id', 'categories.name AS category_name', 'expenses.date', 'expenses.description', 'expenses.amount')
+            return expenses
+} catch (error) {
+    console.error('Error fetching expense:', error)
+    throw error
+}
 }
 
 // return a single expense by id

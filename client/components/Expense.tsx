@@ -1,12 +1,13 @@
 interface Props {
-  category_id: number
+
+  category_name:string
   date: Date
   description: string
   amount: number
 }
 
 export default function Expense({
-  category_id,
+  category_name,
   date,
   description,
   amount,
@@ -16,10 +17,10 @@ export default function Expense({
     return (
     <div>
       <p>
-        {date}
-        {category_id}
-        {description}
-        ${amount}
+       <strong>Date:</strong> {date}
+        <strong>Category:</strong>{category_name}
+        <strong>Description:</strong>{description}
+        <strong>Amount:</strong>${amount}
       </p>
     </div>
   )
