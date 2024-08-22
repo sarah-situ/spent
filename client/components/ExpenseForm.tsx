@@ -43,6 +43,7 @@ export default function ExpenseForm() {
 
   return (
     <>
+    <h2 className="text-4xl font-bold leading-snug">Add New Expense</h2>
       <p>{description}</p>
       <form onSubmit={handleSumbit}>
         <div>

@@ -19,7 +19,7 @@ export default function ExpenseList() {
 
   return (
     <>
-       <h1 className="text-3xl font-bold underline">
+       <h1 className="text-4xl font-bold leading-snug">
          Expenses
         </h1>
     <Expense expenses={expenses} />
