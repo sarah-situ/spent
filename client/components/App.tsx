@@ -1,15 +1,19 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import ExpenseForm from "./ExpenseForm"
+import ExpenseList from "./ExpenseList"
 
 function App() {
-  const { data } = useFruits()
+  // const { data } = useFruits()
 
   return (
     <>
       <div className="app">
         <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Fruits!
+         Expenses
         </h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+        <section>
+          <ExpenseList/>
+          <ExpenseForm />
+        </section>
       </div>
     </>
   )

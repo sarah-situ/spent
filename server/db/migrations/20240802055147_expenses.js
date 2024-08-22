@@ -2,7 +2,7 @@ export const up = function (knex) {
     return knex.schema.createTable('expenses', (table) => {
       table.increments('id').primary()
       table.integer('user_id').unsigned().notNullable()
-      table.integer('category_id').unsigned().notNullable()
+      table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onDelete('CASCADE');
       table.date('date')
       table.string('description')
       table.decimal('amount', 10, 2)

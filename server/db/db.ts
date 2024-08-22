@@ -4,8 +4,16 @@ import { Expense } from '../../models/expenses'
 const db = connection
 
 // get all expenses
-export function getExpenses(): Promise<Expense[]> {
-    return db('expenses').select()
+export async function getExpenses(): Promise<Expense[]> {
+    try {
+        const expenses = await db('expenses')
+        .join('categories', 'expenses.category_id', '=', 'categories.id')
+        .select('expenses.id',' expenses.user_id', 'expenses.category_id', 'categories.name AS category_name', 'expenses.date', 'expenses.description', 'expenses.amount')
+            return expenses
+} catch (error) {
+    console.error('Error fetching expense:', error)
+    throw error
+}
 }
 
 // return a single expense by id
@@ -24,6 +32,16 @@ export function deleteExpense(id: number) {
 }
 
 // add new expense
-export function addExpense(newExpense: Expense) {
-    return db('expenses').insert(newExpense)
+export function addExpense(addNewExpense: Expense) {
+    const user_id = 1 //Hardcoded user_id
+    
+    //convert date to YYYY-MM-DD string to exclude time
+    const formatDate = new Date(addNewExpense.date).toISOString().split('T')[0];
+
+    const expenseWithUserId = {
+        ...addNewExpense,
+        date: formatDate,
+        user_id: user_id,
+    }
+    return db('expenses').insert(expenseWithUserId)
 }
