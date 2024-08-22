@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { fetchExpenses } from '../apis/apiClient'
-import Expense from './Expense'
+import Expense from './ExpenseTable'
 
 export default function ExpenseList() {
   const {
