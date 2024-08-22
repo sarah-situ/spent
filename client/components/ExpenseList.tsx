@@ -19,10 +19,7 @@ export default function ExpenseList() {
 
   return (
     <>
-      {expenses.map((exp, i) => {
-        return <Expense key={i} date={exp.date} category_name={exp.category_name} description={exp.description} amount={exp.amount} />
-      
-      })}
-    </>
+    <Expense expenses={expenses} />
+</>
   )
 }

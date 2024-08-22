@@ -5,6 +5,7 @@ export interface ExpenseData{
     amount: number,
 }
 export interface Expense extends ExpenseData{
+    category_name: string;
     id: number,
     user_id: number,
 }
