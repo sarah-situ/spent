@@ -1,5 +1,4 @@
-import ExpenseForm from "./ExpenseForm"
-import ExpenseList from "./ExpenseList"
+import { Link, Outlet } from "react-router-dom"
 
 function App() {
   // const { data } = useFruits()
@@ -7,12 +6,15 @@ function App() {
   return (
     <>
       <div className="app">
-        <h1 className="text-3xl font-bold underline">
-         Expenses
-        </h1>
+     
         <section>
-          <ExpenseList/>
-          <ExpenseForm />
+        <nav>
+        <ul>
+          <li><Link to="/expense-form">Add Expense</Link></li>
+          <li><Link to="/expense-list">View Expenses</Link></li>
+        </ul>
+      </nav>
+        <Outlet />
         </section>
       </div>
     </>

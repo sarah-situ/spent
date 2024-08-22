@@ -19,6 +19,9 @@ export default function ExpenseList() {
 
   return (
     <>
+       <h1 className="text-3xl font-bold underline">
+         Expenses
+        </h1>
     <Expense expenses={expenses} />
 </>
   )
