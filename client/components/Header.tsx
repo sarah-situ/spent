@@ -8,9 +8,9 @@ const user = {
     'https://plus.unsplash.com/premium_vector-1723275529657-f61f6d109bb1?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Add Expense', href: '#', current: false },
-  { name: 'View Expense', href: '#', current: false },
+  { name: 'Dashboard', href: '/', current: true },
+  { name: 'Add Expense', href: '/expense-form', current: false },
+  { name: 'View Expense', href: '/expense-list', current: false },
  
 ]
 const userNavigation = [
@@ -42,8 +42,8 @@ export default function Header() {
                 <div className="flex-shrink-0">
                   <img
                     alt="Your Company"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    className="h-8 w-8"
+                    src="public/images/logo/Spent Logo (2).png"
+                    className="h-10 w-10"
                   />
                 </div>
                 <div className="hidden md:block">
