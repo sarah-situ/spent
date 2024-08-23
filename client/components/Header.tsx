@@ -1,5 +1,15 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const user = {
   name: 'Tom Cook',
@@ -7,23 +17,33 @@ const user = {
   imageUrl:
     'https://plus.unsplash.com/premium_vector-1723275529657-f61f6d109bb1?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 }
-const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'Add Expense', href: '/expense-form', current: false },
-  { name: 'View Expense', href: '/expense-list', current: false },
- 
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-//   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Header() {
+  const [navigation, setNavigation] = useState([
+    { name: 'Dashboard', href: '/', current: true },
+    { name: 'Add Expense', href: '/expense-form', current: false },
+    { name: 'View Expense', href: '/expense-list', current: false },
+  ])
+
+  const handleNavigationClick = (name: string) => {
+    setNavigation((preNavigation) =>
+      preNavigation.map((item) =>
+        item.name === name
+          ? { ...item, current: true }
+          : { ...item, current: false },
+      ),
+    )
+  }
+
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    //   { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#' },
+  ]
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
   return (
     <>
       {/*
@@ -49,17 +69,20 @@ export default function Header() {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         aria-current={item.current ? 'page' : undefined}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium',
                         )}
+                        onClick={() => handleNavigationClick(item.name)}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -81,7 +104,11 @@ export default function Header() {
                       <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
+                        <img
+                          alt=""
+                          src={user.imageUrl}
+                          className="h-8 w-8 rounded-full"
+                        />
                       </MenuButton>
                     </div>
                     <MenuItems
@@ -107,8 +134,14 @@ export default function Header() {
                 <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
-                  <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-                  <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+                  <Bars3Icon
+                    aria-hidden="true"
+                    className="block h-6 w-6 group-data-[open]:hidden"
+                  />
+                  <XMarkIcon
+                    aria-hidden="true"
+                    className="hidden h-6 w-6 group-data-[open]:block"
+                  />
                 </DisclosureButton>
               </div>
             </div>
@@ -123,7 +156,9 @@ export default function Header() {
                   href={item.href}
                   aria-current={item.current ? 'page' : undefined}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium',
                   )}
                 >
@@ -134,11 +169,19 @@ export default function Header() {
             <div className="border-t border-gray-700 pb-3 pt-4">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
-                  <img alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
+                  <img
+                    alt=""
+                    src={user.imageUrl}
+                    className="h-10 w-10 rounded-full"
+                  />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                  <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                  <div className="text-base font-medium leading-none text-white">
+                    {user.name}
+                  </div>
+                  <div className="text-sm font-medium leading-none text-gray-400">
+                    {user.email}
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -167,11 +210,15 @@ export default function Header() {
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Dashboard
+            </h1>
           </div>
         </header>
         <main>
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            {/* Your content */}
+          </div>
         </main>
       </div>
     </>
