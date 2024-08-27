@@ -2,10 +2,13 @@
 
 ### Expense tracker in the works
 ![image](https://github.com/user-attachments/assets/66248c78-2cb8-442c-a656-d9af9cf7349a)
+![image](https://github.com/user-attachments/assets/56417aff-2e55-46fe-8ac4-993698f52392)
+
 
 
 ### Technologies
 - JavaScript
+- TypeScript
 - React
 - SQLite3
 - Tailwind CSS
