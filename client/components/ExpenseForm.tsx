@@ -46,18 +46,18 @@ export default function ExpenseForm() {
 
   if (addMutation.isSuccess) {
     return (
-      <p>
-        Submitted: {description} ${amount}
+      <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+     {description} {amount}Submitted!
       </p>
     )
   }
-  // console.log(description)
+  console.log(description)
 
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold leading-snug">Add New Expense</h2>
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
         <form onSubmit={handleSumbit}>
           <div>
             <label htmlFor="category">Category:</label>
@@ -105,8 +105,7 @@ export default function ExpenseForm() {
               required
             />
           </div>
-
-          <button>Submit</button>
+          <button className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
         </form>
       </div>
     </>
