@@ -1,36 +1,34 @@
-# Boilerplate: Fullstack with Sass
+# Spent app - expense tracker
+
+### Expense tracker in the works
+
+### Technologies
+- JavaScript
+- React
+- SQLite3
+- Tailwind CSS
+
+### Current features:
+- Add expense using a form and saving data into a database (SQLite3)
+- View the list of expenses on a separate page
+
+### Additional features to add 
+- Make the app live
+- Add auth0 to allow secure user experience - sign up with your email and access your expenses
+- Select and view expenses based on a timeframe (eg view expenses by month)
+- Visualise expenses based on categories and or months with graphs and pie graphs
 
 ## Setup
-
-### What's included
-
-This repo includes:
-
-* a single, simple API endpoint (`/api/v1/fruits`)
-* frontend routing via react-router
-* an auth0 setup waiting to be configured
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* configuration for Vitest and testing library
-* configuration for server-side debugging in VS Code
-* configuration for preprocessing css with tailwind support
-
-### Installation
-
-#### **From the Github UI**
-
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
-
 #### **From the command line**
 
 ```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack-auth [your-project-name]
-cd [your-project-name]
+git clone https://github.com/sarah-situ/spent
+cd spent
 npm install # to install dependencies
+npm run knex migrate:latest # run migrations for database
+npm run knex seed:run # run seeds for database
 npm run dev # to start the dev server
 ```
 
 You can find the server running on [http://localhost:3000](http://localhost:3000) and the client running on [http://localhost:5173](http://localhost:5173).
 
----
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-fullstack)
