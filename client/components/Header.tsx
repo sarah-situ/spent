@@ -62,7 +62,7 @@ export default function Header() {
                 <div className="flex-shrink-0">
                   <img
                     alt="Your Company"
-                    src="public/images/logo/Spent Logo (2).png"
+                    src="/images/logo/spent-log-(2).png"
                     className="h-10 w-10"
                   />
                 </div>
