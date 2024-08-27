@@ -47,7 +47,7 @@ export default function ExpenseForm() {
   if (addMutation.isSuccess) {
     return (
       <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-     {description} {amount}Submitted!
+        {description} {amount}Submitted!
       </p>
     )
   }
@@ -55,13 +55,14 @@ export default function ExpenseForm() {
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold leading-snug">Add New Expense</h2>
         {/* <p>{description}</p> */}
         <form onSubmit={handleSumbit}>
-          <div>
+          <div className="">
             <label htmlFor="category">Category:</label>
             <select
+              className="text-black-900 block w-[300px] h-[41px] m-2 rounded-lg border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
               id="category"
               value={selectedCategoryId}
               onChange={(e) => setSelectedCategoryId(e.target.value)}
@@ -78,6 +79,7 @@ export default function ExpenseForm() {
           <div>
             <label htmlFor="description">Expense Name:</label>
             <input
+              className="text-black-900 block w-[300px] h-[41px] m-2 rounded-lg border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
               type="text"
               id="description"
               value={description}
@@ -88,6 +90,7 @@ export default function ExpenseForm() {
           <div>
             <label htmlFor="amount">Amount:</label>
             <input
+              className="text-black-900 block w-[300px] h-[41px] m-2 rounded-lg border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
               type="number"
               id="amount"
               value={amount}
@@ -98,6 +101,7 @@ export default function ExpenseForm() {
           <div>
             <label htmlFor="date">Date:</label>
             <input
+              className="text-black-900 block w-[300px] h-[41px] m-2 rounded-lg border border-gray-300 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500"
               type="date"
               id="date"
               value={date}
@@ -105,7 +109,11 @@ export default function ExpenseForm() {
               required
             />
           </div>
-          <button className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
+          <div className="flex justify-center">
+          <button className="m-5 mb-2 me-2 rounded-full bg-green-700 px-10 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 content-center">
+            Submit
+          </button>
+          </div>
         </form>
       </div>
     </>
