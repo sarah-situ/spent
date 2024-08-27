@@ -1,6 +1,8 @@
 # Spent app - expense tracker
 
 ### Expense tracker in the works
+![image](https://github.com/user-attachments/assets/66248c78-2cb8-442c-a656-d9af9cf7349a)
+
 
 ### Technologies
 - JavaScript
